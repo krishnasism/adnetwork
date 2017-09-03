@@ -1,4 +1,13 @@
 <?php
+/*Class to generate website
+
+WORKFLOW
+* Input the name of the website from the url GET METHOD
+* Request for data from the websites table, use uri
+* Get the theme selected by the user
+* <<If we are giving custom websites, get saved code from codes table - w/ respect to uri (?)
+* Generate the site on user data
+*/
 class Generate
 {
   public function getData($uri)

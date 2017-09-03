@@ -2,6 +2,11 @@
 /*
 * Manages the dashboard of the user.
 */
+/* Workflow
+* Get the type of account of the user from Sessions
+* Generate alternate list of ads. e.g. -> apps will see shops and vice versa
+* Generate link to the specific app/shop
+*/
 class Dashboard
 {
     function ads_own($conn)

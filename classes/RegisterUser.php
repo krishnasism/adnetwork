@@ -24,7 +24,7 @@
                 $db_operation = new Database_Operations();
                 $conn = $db_operation->connect();
 
-                $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
+                $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'") or die($conn);
                 $exists = mysqli_num_rows($query);
                 $flag = true;
                 if($exists > 0)
@@ -39,6 +39,7 @@
                 else
                 {
                     mysqli_query($conn,"INSERT INTO users(fname,lname,username,password,organisation,contact,email,typeofaccount,api) VALUES('$fname','$lname','$username','$password','$organisation','$contact','$email','$type','$api')") or die(mysqli_error($conn));
+										header("location:login");
                 }
             }
 		}

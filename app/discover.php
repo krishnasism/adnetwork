@@ -4,8 +4,9 @@
     {
         header("location:login.php");
     }
-    require($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/db.php');
-
+    //require($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/db.php');
+    require($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/LoadDiscover.php');
+    //print($_SESSION['typeofaccount']);
  ?>
 <!DOCTYPE html>
 
@@ -35,23 +36,8 @@
    <div class="row">
   <div class="col-sm-8" style="margin-left: 10px">
     <?php
-       $db_operation = new Database_Operations();
-       $conn = $db_operation->connect();
-
-      $query = mysqli_query($conn,"SELECT * FROM adverts") or die(mysqli_error($conn));
-      $exists = mysqli_num_rows($query);
-      $i = 0;
-      if($exists>0)
-        {
-            while($row = mysqli_fetch_assoc($query))
-            {
-              print("<i><h2>  <a href=\"app.php?".$row['name']."\">".$row['name']."</a></h2></i>");
-              print("<h4>".$row['owner']."</h4>");
-              print("<p>".$row['description']."</p>");
-              print("<hr>");
-            }
-        }
-
+      $ld = new LoadDiscover();
+      $ld->load($_SESSION['typeofaccount']); // send type of account here
     ?>
   </div>
   <div class="col-sm-4" style="margin-left: 10px">

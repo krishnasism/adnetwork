@@ -11,6 +11,7 @@ RewriteRule ^developers?$ app/developers.php
 RewriteRule ^createad?$ app/createad.php
 RewriteRule ^application/([0-9a-zA-Z]+) app/application.php?name=$1
 RewriteRule ^adverts app/index.php
+
 RewriteRule ^classes index.php
 
 RewriteRule ^([^/\.]+)/?$ app/generatesite.php?uri=$1 [L,QSA]
