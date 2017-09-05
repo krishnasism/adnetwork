@@ -62,7 +62,7 @@ class GenerateAppShop
     If the requester is the owner, dont show request button
     return true if this is the owner
     return false if this is not the owner
-    */
+    */  
 
   }
   function checkIfAlreadySent($conn, $requester)
