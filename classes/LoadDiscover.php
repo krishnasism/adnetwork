@@ -1,4 +1,9 @@
 <?php
+/* WORKFLOW
+* Display apps/shops according to the type of user
+* Always show alternative app/shop ads - e.g. developer should see shops & vice-versa
+*
+*/
 class LoadDiscover
 {
 
@@ -9,8 +14,20 @@ class LoadDiscover
     $db_operation = new Database_Operations();
     $conn = $db_operation->connect();
 
-   $query = mysqli_query($conn,"SELECT * FROM adverts") or die(mysqli_error($conn));
+    $toshow = "";
+    if($typeofaccount == "shop")
+    {
+       $toshow = "app";
+    }
+    else {
+      $toshow = "shop";
+    }
+
+
+   $query = mysqli_query($conn,"SELECT * FROM adverts WHERE type='$toshow'") or die(mysqli_error($conn));
    $exists = mysqli_num_rows($query);
+
+
    $i = 0;
    if($exists>0)
      {

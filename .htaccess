@@ -9,7 +9,8 @@ RewriteRule ^register?$ app/register.php
 RewriteRule ^logout?$ app/logout.php
 RewriteRule ^developers?$ app/developers.php
 RewriteRule ^createad?$ app/createad.php
-RewriteRule ^application/([0-9a-zA-Z]+) app/application.php?name=$1
+
+RewriteRule ^appshop/([0-9a-zA-Z]+) app/appshop.php?name=$1
 RewriteRule ^adverts app/index.php
 
 RewriteRule ^classes index.php

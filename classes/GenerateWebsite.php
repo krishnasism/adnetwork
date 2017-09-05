@@ -8,7 +8,7 @@ WORKFLOW
 * <<If we are giving custom websites, get saved code from codes table - w/ respect to uri (?)
 * Generate the site on user data
 */
-class Generate
+class GenerateWebsite
 {
   public function getData($uri)
   {

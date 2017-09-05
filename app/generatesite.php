@@ -1,8 +1,8 @@
 <?php
 /* NOTE : Check if an user is loggged in over here. do a navbar -  something like wordpress ! */
 
-require($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/Generate.php');
-$generate = new Generate();
+require($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/GenerateWebsite.php');
+$generate = new GenerateWebsite();
 
 $uri = $_GET['uri'];
 

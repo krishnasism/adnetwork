@@ -18,7 +18,7 @@ class AdOperations
 
     $adid = $_GET['adid'] - 788988712;
   	$uid = $_GET['uid'] - 78548789;
-    
+
     require ($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/db.php');
     $db_operation = new Database_Operations();
     $conn = $db_operation->connect();
