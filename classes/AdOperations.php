@@ -97,6 +97,45 @@ class AdOperations
   }
 
 
+  function createAd()
+  {
+      require('db.php');
+    /*First input these stuff into the adverts table*/
+        $adname = $_POST['adname'];
+        $adimg = $_POST['adimg'];
+        $adowner = $_POST['adowner'];
+        $adlink = $_POST['adlink'];
+        $addescription = $_POST['addesc'];
+        $adtype = $_POST['adtype'];
+
+
+        $db_operation = new Database_Operations();
+        $conn = $db_operation->connect();
+
+        $query = mysqli_query($conn, "INSERT into adverts(name,link,owner,type,description,image) VALUES('$adname', '$adlink', '$adowner', '$adtype', '$addescription', '$adimg')") or die(mysqli_error($conn));
+
+       
+
+    /*Now update every table related to this, i.e., ad_own*/
+    $username = $_SESSION['username'];
+    $query = mysqli_query($conn, "SELECT id FROM users WHERE username = '$username'") or die(mysqli_error($conn)); 
+
+    $rows = mysqli_fetch_assoc($query);
+    $uid = $rows['id'];
+
+
+
+    $query = mysqli_query($conn, "SELECT id FROM adverts WHERE name = '$adname'") or die(mysqli_error($conn));
+    $rows = mysqli_fetch_assoc($query);
+    $adid = $rows['id'];
+
+    $query = mysqli_query($conn, "INSERT into ad_own(uid,adid) VALUES('$uid','$adid')") or die(mysqli_error($conn));
+    
+
+
+    //Redirect to discover page.. or somewhere else!! 
+    header('location:discover');
+  }
 }
 
 ?>

@@ -9,10 +9,13 @@
     $userid = $_SESSION['userid'];
     $api = $_SESSION['api'];
 
-   	require ($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/db.php');
+   	/*require ($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/db.php');
 
    	$db_operation = new Database_Operations();
-   	$conn = $db_operation->connect();
+   	$conn = $db_operation->connect();*/
+
+    require($_SERVER['DOCUMENT_ROOT'].'/adnetwork/classes/AdOperations.php');
+         $adoperations = new AdOperations();
  ?>
 <!DOCTYPE html>
 
@@ -31,5 +34,23 @@
    <?php
     include $_SERVER['DOCUMENT_ROOT'].'/adnetwork/navbar/loggedinnav.php';
    ?>
+
+   <form action="createad" method="POST">
+    <input type = "text" name = "adname" placeholder="ad name">
+    <input type = "text" name = "adimg" placeholder="ad img">
+    <input type = "text" name = "adlink" placeholder="ad link">
+    <input type = "text" name = "addesc" placeholder="ad addesc">
+    <input type = "text" name = "adtype" placeholder="ad adtype">
+    <input type = "submit" value="Submit">
+   </form>
     </body>
    </html>
+
+<?php
+
+       if($_SERVER["REQUEST_METHOD"] == "POST")
+       {
+         $adoperations->createad();
+       }
+
+?>
