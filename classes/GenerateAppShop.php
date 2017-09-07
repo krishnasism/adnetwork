@@ -11,8 +11,10 @@ class GenerateAppShop
       //$ownercheck= checkOwner($requester)
       //$checkSent = checkIfAlreadySent($requester)
       //$checkReceived = checkIfReceived($requester)
-      $ownercheck = false; //temporarily
+      $ownercheck = (new GenerateAppShop())->checkOwner($conn, $appshopName, $requester);
+
       $checkIfAlreadySent  = false; //temp
+
       $checkIfReceived = false; //temp
 
       $query = mysqli_query($conn, "SELECT * FROM adverts WHERE name = '$appshopName'");
@@ -56,7 +58,7 @@ class GenerateAppShop
 
   }
 
-  function checkOwner($conn, $requester)
+  function checkOwner($conn,$adname, $requester)
   {
     /*
     If the requester is the owner, dont show request button
@@ -64,6 +66,34 @@ class GenerateAppShop
     return false if this is not the owner
     */
 
+   
+
+    $username = $_SESSION['username'];
+    $query = mysqli_query($conn, "SELECT id FROM users WHERE username ='$username'");
+    $rows = mysqli_fetch_assoc($query);
+    $uid = $rows['id'];
+
+    $query = mysqli_query($conn, "SELECT id FROM adverts WHERE name = '$adname'");
+    $rows = mysqli_fetch_assoc($query);
+    $adid = $rows['id'];
+
+    $query = mysqli_query($conn, "SELECT adid FROM ad_own WHERE uid = '$uid'");
+    $rows = mysqli_fetch_assoc($query);
+    $adid_table = $rows['adid'];
+
+    
+
+
+    if($adid_table == $adid)
+    {
+      print('GenerateAppShop.php : You are the Owner<br><br>');
+      return true;
+    }
+    else
+    {
+      print('GenerateAppShop.php : You are NOT the Owner<br><br>');
+      return false;
+    }
 
   }
   function checkIfAlreadySent($conn, $requester)
